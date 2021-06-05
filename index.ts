@@ -52,7 +52,7 @@ mongoose
 autoIncrement.initialize(mongoose.connection);
 
 app.use(cors());
-
+// app.use(helmet());
 app.use(morgan('dev'));
 
 app.use(bodyParser.json());
@@ -63,7 +63,7 @@ console.log('swaggerDocument', swaggerDocument)
 console.log('swaggerUi', swaggerUi)
 
 // app.use('/api-docs2', swaggerUi.generateHTML(swaggerDocument));
-app.use(helmet());
+
 import swagger from './src/outputs/tsoa/swagger.json';
 app.use('/swagger.json', (req, res) => {
 	res.send(swagger);
