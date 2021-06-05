@@ -59,7 +59,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true, limit: '50000kb' }));
 
 RegisterRoutes(app);
-
+console.log('swaggerDocument', swaggerDocument)
+console.log('swaggerUi', swaggerUi)
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 import swagger from './src/outputs/tsoa/swagger.json';
