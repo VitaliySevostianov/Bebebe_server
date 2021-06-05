@@ -16,9 +16,15 @@ import swaggerDocument from './src/outputs/tsoa/swagger.json';
 import config from './config';
 
 import { RegisterRoutes } from './src/outputs/tsoa/routes';
-
+var options = {
+	swaggerOptions: {
+	  validatorUrl: null
+	},
+	customCssUrl: '/test.css',
+	url: 'http://194.58.92.46:4000/swagger.json'
+  };
 const app = express();
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
 import multer from 'multer'
 const upload = multer({})
 app.use(
