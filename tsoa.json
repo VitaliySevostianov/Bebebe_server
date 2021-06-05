@@ -1,0 +1,90 @@
+{
+	"entryFile": "index.ts",
+	"noImplicitAdditionalProperties": "throw-on-extras",
+	"controllerPathGlobs": ["src/api/v1/**/controllers/*.ts"],
+	"routes": {
+		"routesDir": "src/outputs/tsoa",
+		"basePath": "/api/v1",
+		"authenticationModule": "./authentication.ts"
+	},
+	"spec": {
+		"outputDirectory": "src/outputs/tsoa",
+		"specVersion": 3,
+		"basePath": "/api/v1",
+		"schemes": ["http", "https"],
+		"tags": [
+			{
+				"name": "Products",
+				"description": "Маршруты взаимодействия с продуктами"
+			}
+		],
+		"securityDefinitions": {
+			"jwt": {
+				"type": "apiKey",
+				"in": "header",
+				"name": "authorization"
+			},
+			"tsoa_auth": {
+				"type": "oauth2",
+				"authorizationUrl": "http://127.0.0.1:3000/auth/authorize",
+				"tokenUrl": "http://127.0.0.1:3000/auth/token",
+				"flow": "accessCode",
+				"scopes": {
+					"write": "modify things",
+					"read": "read things"
+				}
+			}
+		},
+		"specMerging": "recursive",
+		"spec": {
+			"paths": {
+				"/products/{productId}/images": {
+					"put": {
+					  "consumes": [
+						"multipart/form-data"
+					  ],
+					  "requestBody":{
+						  "content":{
+							  "multipart/form-data": {
+								  "schema":{
+									  "type": "object",
+									  "properties": {
+										  "files": {
+											  "type": "string",
+											  "format": "binary"
+										  }
+									  }
+									  
+								  }
+							  }
+						  }
+					  }
+					}
+				  },
+				  "/productsSet/{productSetId}/images": {
+					"put": {
+					  "consumes": [
+						"multipart/form-data"
+					  ],
+					  "requestBody":{
+						  "content":{
+							  "multipart/form-data": {
+								  "schema":{
+									  "type": "object",
+									  "properties": {
+										  "files": {
+											  "type": "string",
+											  "format": "binary"
+										  }
+									  }
+									  
+								  }
+							  }
+						  }
+					  }
+					}
+				  }
+			  }
+		}
+	}
+}

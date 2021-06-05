@@ -1,0 +1,6 @@
+{
+	"exec":  "npx ts-node index.ts",
+	"watch": [""],
+	"ext": "ts",
+	"ignore": ["src/outputs/tsoa/routes.ts"]
+}

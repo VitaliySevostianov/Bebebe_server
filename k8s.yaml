@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: __PROJECT_NAMESPACE__
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: __PROJECT_NAME__-deployment
+  namespace: __PROJECT_NAMESPACE__
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: __PROJECT_NAME__
+  template:
+    metadata:
+      namespace: __PROJECT_NAMESPACE__
+      labels:
+        app: __PROJECT_NAME__
+    spec:
+      containers:
+        - name: __PROJECT_NAME__
+          image: cr.yandex/crp4o7r2501stispash5/__PROJECT_NAME__:__VERSION__
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 3000
+          volumeMounts:
+            - name: __PROJECT_NAME__-storage
+              mountPath: /src/outputs/documents
+      volumes:
+        - name: __PROJECT_NAME__-storage
+          persistentVolumeClaim:
+            claimName: __PROJECT_NAME__
