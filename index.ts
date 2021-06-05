@@ -18,7 +18,7 @@ import config from './config';
 import { RegisterRoutes } from './src/outputs/tsoa/routes';
 
 const app = express();
-
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 import multer from 'multer'
 const upload = multer({})
 app.use(
@@ -61,7 +61,7 @@ app.use(bodyParser.urlencoded({ extended: true, limit: '50000kb' }));
 RegisterRoutes(app);
 console.log('swaggerDocument', swaggerDocument)
 console.log('swaggerUi', swaggerUi)
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 // app.use('/api-docs2', swaggerUi.generateHTML(swaggerDocument));
 app.use(helmet());
 import swagger from './src/outputs/tsoa/swagger.json';
